@@ -1,3 +1,5 @@
+import datetime
+
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
@@ -12,7 +14,7 @@ class Reimburse(models.Model):
 
     id = models.AutoField(primary_key=True)
     date = models.DateField()
-    document_attach = models.FileField(upload_to="static/docs")
+    document_attach = models.FileField(upload_to="upload")
     document_type = models.CharField(max_length=3, default=DocumentType.JPG, choices=DocumentType.choices)
     description = models.TextField()
 
@@ -21,9 +23,20 @@ class Reimburse(models.Model):
         return [
             {
                 "id": q.id,
-                "date": q.date,
-                "document_attach": q.document_attach,
+                "date": q.date.strftime('%Y/%m/%d'),
+                "document_attach": q.document_attach.url,
                 "document_type": q.document_type,
                 "description": q.description
             } for q in cls.objects.order_by('id')
         ]
+
+    @classmethod
+    def get_one(cls, **kwargs):
+        q = cls.objects.filter(**kwargs).first()
+        return {
+            "id": q.id,
+            "date": q.date.strftime('%Y/%m/%d'),
+            "document_attach": q.document_attach.url,
+            "document_type": q.document_type,
+            "description": q.description
+        }

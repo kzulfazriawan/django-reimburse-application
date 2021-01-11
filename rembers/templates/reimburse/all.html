@@ -1,0 +1,71 @@
+<form>
+	<div class="uk-card-header">
+		<div class="uk-grid-small uk-flex-middle" uk-grid>
+			<div class="uk-width-expand">
+				<h3 class="uk-card-title uk-align-left">Reimburse new</h3>
+			</div>
+		</div>
+	</div>
+	<div class="uk-card-body">
+		<table class="uk-table uk-table-divider">
+			<thead>
+				<tr>
+					<th>#</th>
+					<th>USER</th>
+					<th>CATEGORY</th>
+					<th>STATUS</th>
+					<th>ACTION</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for item in data %}
+				<tr>
+					<td>{{ item.id }}</td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td>
+						<div class="uk-button-group">
+							<button class="uk-button uk-button-default">Show detail</button>
+							<div class="uk-inline">
+								<button class="uk-button uk-button-default" type="button"><span uk-icon="icon:  triangle-down"></span></button>
+								<div uk-dropdown="mode: click; boundary: ! .uk-button-group; boundary-align: true;">
+									<ul class="uk-nav uk-dropdown-nav">
+										<li><a href="" class="uk-text-success"><span class="uk-margin-small-right" uk-icon="icon: check" uk-tooltip="Approve reimburse"></span> Approve</a></li>
+										<li class="uk-nav-divider"></li>
+										<li><a href="" class="uk-text-danger"><span class="uk-margin-small-right" uk-icon="icon: ban" uk-tooltip="Refuse reimburse"></span> Refuse</a></li>
+										<li><a href="" class="uk-text-primary"><span class="uk-margin-small-right" uk-icon="icon: move" uk-tooltip="Transfer reimburse"></span> Transfer</a></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+	<div class="uk-card-footer">
+		{% if users.has_other_pages %}
+		<ul class="uk-pagination" uk-margin>
+			{% if users.has_previous %}
+			<li><a href="?page={{ users.previous_page_number }}">«</a></li>
+			{% else %}
+			<li class="disabled"><span>«</span></li>
+			{% endif %}
+			{% for i in users.paginator.page_range %}
+			{% if users.number == i %}
+				<li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+			{% else %}
+				<li><a href="?page={{ i }}">{{ i }}</a></li>
+			{% endif %}
+			{% endfor %}
+			{% if users.has_next %}
+			<li><a href="?page={{ users.next_page_number }}">»</a></li>
+			{% else %}
+			<li class="disabled"><span>»</span></li>
+			{% endif %}
+		</ul>
+		{% endif %}
+	</div>
+</form>
