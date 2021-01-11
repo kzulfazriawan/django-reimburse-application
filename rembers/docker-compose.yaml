@@ -1,0 +1,12 @@
+version: "3.7"
+
+services:
+  db_server_reimbursement:
+    container_name: mariadb_server
+    image: mariadb:latest
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: 'db_password'
+      MYSQL_DATABASE: 'db_rembers'
+      MYSQL_USER: 'db_user'
+      MYSQL_PASSWORD: 'db_password'

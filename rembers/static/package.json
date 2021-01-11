@@ -1,0 +1,17 @@
+{
+  "name": "Rembers",
+  "version": "1.0.0",
+  "description": "NPM reimburse",
+  "main": "index.js",
+  "scripts": {
+    "test": "tests"
+  },
+  "author": "kzulfazriawan",
+  "license": "ISC",
+  "dependencies": {
+    "angular": "^1.8.2",
+    "lodash": "^4.17.20",
+    "moment": "^2.29.1",
+    "ng-file-upload": "^12.2.13"
+  }
+}

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>{% block title %}{% endblock %} .: Reimbursement</title>
+		<!-- CSS FILES -->
+        {% load static %}
+        <link rel="stylesheet" type="text/css" href="{% static 'css/uikit.min.css' %}" />
+		<link rel="stylesheet" type="text/css" href="{% static 'css/dashboard.css' %}">
+	</head>
+	<body ng-app="App">
+		<!--HEADER-->
+		{% include "parts/header.html" %}
+		<!--/HEADER-->
+
+		<!-- LEFT BAR -->
+		{% include "parts/sidebar.html" %}
+		<!-- /LEFT BAR -->
+		
+		<!-- CONTENT -->
+		<div id="content" data-uk-height-viewport="expand: true">
+			<div class="uk-container uk-container-expand">
+				{% block content %}
+				{% endblock  %}
+			</div>
+		</div>
+		<!-- /CONTENT -->
+		<!-- OFFCANVAS -->
+		<div id="offcanvas-nav" data-uk-offcanvas="flip: true; overlay: true">
+			<div class="uk-offcanvas-bar uk-offcanvas-bar-animation uk-offcanvas-slide">
+				<button class="uk-offcanvas-close uk-close uk-icon" type="button" data-uk-close></button>
+				<ul class="uk-nav uk-nav-default">
+					<li class="uk-active"><a href="#">Active</a></li>
+					<li class="uk-parent">
+						<a href="#">Parent</a>
+						<ul class="uk-nav-sub"> 
+							<li><a href="#">Sub item</a></li>
+							<li><a href="#">Sub item</a></li>
+						</ul>
+					</li>
+					<li class="uk-nav-header">Header</li>
+					<li><a href="#js-options"><span class="uk-margin-small-right uk-icon" data-uk-icon="icon: table"></span> Item</a></li>
+					<li><a href="#"><span class="uk-margin-small-right uk-icon" data-uk-icon="icon: thumbnails"></span> Item</a></li>
+					<li class="uk-nav-divider"></li>
+					<li><a href="#"><span class="uk-margin-small-right uk-icon" data-uk-icon="icon: trash"></span> Item</a></li>
+				</ul>
+				<h3>Title</h3>
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+			</div>
+		</div>
+		<!-- /OFFCANVAS -->
+		
+		<!-- JS FILES -->
+		<script src="{% static 'js/uikit.min.js' %}"></script>
+		<script src="{% static 'js/uikit-icons.min.js' %}"></script>
+		<script src="{% static 'node_modules/lodash/lodash.min.js' %}"></script>
+		<script src="{% static 'node_modules/moment/moment.js' %}"></script>
+		<script src="{% static 'node_modules/angular/angular.min.js' %}"></script>
+		<script src="{% static 'node_modules/ng-file-upload/dist/ng-file-upload-all.min.js' %}"></script>
+
+		<script src="{% static 'js/modules/app.js' %}"></script>
+		<script src="{% static 'js/modules/factories/http.js' %}"></script>
+		<script src="{% static 'js/modules/controllers/settings.js' %}"></script>
+		<script src="{% static 'js/modules/controllers/reimburse.js' %}"></script>
+	</body>
+</html>

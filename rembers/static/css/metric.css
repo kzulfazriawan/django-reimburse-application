@@ -1,0 +1,117 @@
+@font-face {
+  font-family: DukasCFBold-Regular;
+  src: url(../font/DukasCFBold-Regular.woff);
+}
+
+@font-face {
+  font-family: DukasCFSemiBold-Regular;
+  src: url(../font/DukasCFSemiBold-Regular.woff);
+}
+
+@font-face {
+  font-family: DukasCF-Regular;
+  src: url(../font/DukasCFRegular-Regular.woff);
+}
+
+.bold-reg {
+    font-family: DukasCFBold-Regular !important;
+}
+
+.reg {
+    font-family: DukasCF-Regular !important;
+}
+
+body{
+    background-color: #fcfcfa !important;
+    height: 100%;
+    width: 100%;
+}
+
+.navigation{
+    background:none !important;
+    border-bottom:1px solid #e8e8e8;
+    position:relative;
+}
+
+.center-logo{
+    display:inline-block;
+    height:80px;
+    width:80px;
+    position:relative;
+    text-decoration:none;
+    transition: all .75s ease-in-out;
+
+    -webkit-box-shadow: 0 0 2px #ddd;
+       -moz-box-shadow: 0 0 2px #ddd;
+            box-shadow: 0 0 2px #ddd;
+}
+
+.center-logo:hover{
+    text-decoration:none;
+
+    -webkit-box-shadow: 0 0 10px #ffcc00ff;
+       -moz-box-shadow: 0 0 10px #ffcc00ff;
+            box-shadow: 0 0 10px #ffcc00ff;
+}
+
+.nav-bar{
+    border-top:5px solid #454545 !important;
+}
+
+.nav-bar ul li a{
+    color:#535353 !important;
+}
+
+.nav-bar ul li a:hover{
+    color: #222 !important;
+}
+
+.footer{
+    border-top:1px solid #e8e8e8;
+}
+
+.header-pic{
+    width:100% !important;
+    min-height:600px;
+}
+
+.button{
+    border:2px solid #fff;
+    transition:all .75 ease-out;
+}
+
+.button:hover{
+    background-color:#ffcc00ff !important;
+    border-color:#ffcc00ff !important;
+    color:#000 !important;
+}
+
+.summary-grid div{
+    border:none;
+    border-left:1px solid #eee !important;
+}
+
+.summary-grid div h2{
+    font-weight: 400;
+}
+
+.summary-grid div:first-child{
+    border-left:none !important;
+}
+
+.underline{
+    padding-bottom:7px;
+    border-bottom:3px solid #ffcc00ff;
+}
+
+a, a:hover{
+    color:#808080;
+}
+
+.description dt{
+    color: #454545;
+}
+
+.description dd p{
+    font-size:1.25em;
+}
