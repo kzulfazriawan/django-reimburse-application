@@ -80,5 +80,18 @@
 			"created_at": "2020-01-01 00:00:01",
 			"updated_at": "2020-01-01 00:00:01"
 		}
+	},
+	{
+		"model": "settings.Settings",
+		"pk": 7,
+		"fields": {
+			"name": "bank_available",
+			"value": "bca, bni, mandiri, permata_bank, cimb, bri, btpn, btn, other",
+			"category": "application",
+			"field_type": "STR",
+			"description": "name of the application",
+			"created_at": "2020-01-01 00:00:01",
+			"updated_at": "2020-01-01 00:00:01"
+		}
 	}
 ]

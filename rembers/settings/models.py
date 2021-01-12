@@ -13,7 +13,6 @@ class Settings(models.Model):
         TEXT = 'TXT', _('text')
         UPLOAD = 'FIL', _('file')
 
-    id = models.AutoField(primary_key=True)
     name = models.CharField(unique=True, max_length=191)
     value = models.TextField()
     category = models.CharField(max_length=191)

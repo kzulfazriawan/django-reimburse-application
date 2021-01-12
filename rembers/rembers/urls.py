@@ -20,6 +20,9 @@ from django.views.generic.base import TemplateView
 urlpatterns = [
     path('', TemplateView.as_view(template_name='dashboard.html'), name='home'),
     path('admin/', admin.site.urls),
+    path('accounts/', include('accounts.urls')),
+
+    # installed apps
     path('reimburse/', include('reimburse.urls')),
     path('settings/', include('settings.urls'))
 ]

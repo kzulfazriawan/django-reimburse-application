@@ -1,0 +1,58 @@
+<form ng-init="init()" ng-submit="post_save()">
+	<div class="uk-card-header">
+		<div class="uk-grid-small uk-flex-middle" uk-grid>
+			<div class="uk-width-expand">
+				<h3 class="uk-card-title uk-align-left">Edit profile</h3>
+			</div>
+		</div>
+	</div>
+
+	<div class="uk-card-body">
+		<ul class="uk-list uk-list-striped">
+			<li>
+				<label class="uk-text-small uk-text-secondary">Name <sup class="uk-text-danger">*</sup></label>
+				<input class="uk-input uk-margin-small uk-text-small" type="name"
+					ng-model="form.name" />
+			</li>
+
+			<li>
+				<label class="uk-text-small uk-text-secondary">Phone number <sup class="uk-text-danger">*</sup></label>
+				<input class="uk-input uk-margin-small uk-text-small" type="name"
+					ng-model="form.phone_number" />
+			</li>
+
+			<li>
+				<label class="uk-text-small uk-text-secondary">Profile picture<sup class="uk-text-danger">*</sup></label>
+				<div class="uk-inline uk-width-expand">
+					<div uk-form-custom="target: true" class="uk-width-expand">
+						<input type="file"
+							ng-model="form.profile_picture" ngf-accept="'image/*, .pdf'" ngf-select=""/>
+						<input class="uk-input" type="text" placeholder="Select file" disabled>
+					</div>
+					<span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: link"></span>
+				</div>
+			</li>
+
+			<li>
+				<label class="uk-text-small uk-text-secondary">Bank name <sup class="uk-text-danger">*</sup></label>
+				<select class="uk-select uk-text-small"	
+					ng-options="key as value for (key , value) in settings.value" ng-model="form.bank_name">
+				</select>
+			</li>
+
+			<li>
+				<label class="uk-text-small uk-text-secondary">Bank account <sup class="uk-text-danger">*</sup></label>
+				<input class="uk-input uk-margin-small uk-text-small" type="name"
+					ng-model="form.bank_account" />
+			</li>
+
+			<li>
+				<label class="uk-text-small uk-text-secondary">Description</label>
+				<textarea class="uk-textarea" ng-model="form.description"></textarea>
+			</li>
+		</ul>
+	</div>
+	<div class="uk-card-footer">
+		<button type="submit" class="uk-button uk-button-primary">Save</button>
+	</div>
+</form>

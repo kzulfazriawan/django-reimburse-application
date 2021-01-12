@@ -138,3 +138,4 @@ dmypy.json
 cython_debug/
 .idea/
 rembers/static/node_modules/
+rembers/static/docs/

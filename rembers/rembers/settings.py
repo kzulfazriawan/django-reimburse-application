@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'settings',
-    'reimburse'
+    'reimburse',
+    'accounts'
 ]
 
 MIDDLEWARE = [
@@ -131,3 +132,5 @@ STATICFILES_DIRS = [
 
 MEDIA_ROOT = BASE_DIR.joinpath('static', 'docs')
 MEDIA_URL = '/docs/'
+
+LOGIN_URL = '/accounts/login/'

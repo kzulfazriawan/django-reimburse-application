@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Login .: Reimbursement</title>
+		<!-- CSS FILES -->
+        {% load static %}
+        <link rel="stylesheet" type="text/css" href="{% static 'css/uikit.min.css' %}" />
+		<link rel="stylesheet" type="text/css" href="{% static 'css/dashboard.css' %}">
+	</head>
+    <body class="uk-flex uk-flex-center uk-flex-middle uk-background-muted uk-height-viewport" data-uk-height-viewport
+        ng-app="App">
+        <div class="uk-width-large uk-padding-small" ng-controller="Auth">
+            <h2 class="uk-text-center">Reimbursement</h2>
+            <hr/>
+
+            <div class="uk-alert-[$ alert.status $] uk-text-small" uk-alert ng-show="alert">
+                <a class="uk-alert-close" uk-close></a>
+                <p>[$ alert.message $]</p>
+            </div>
+            
+            <form class="toggle-class" ng-submit="post_submit()">
+                <fieldset class="uk-fieldset">
+                    <div class="uk-margin-small">
+                        <div class="uk-inline uk-width-1-1">
+                            <span class="uk-form-icon uk-form-icon-flip" data-uk-icon="icon: user"></span>
+                            <input class="uk-input" required placeholder="Username" type="text" ng-model="form.username" required>
+                        </div>
+                    </div>
+                    <div class="uk-margin-small">
+                        <div class="uk-inline uk-width-1-1">
+                            <span class="uk-form-icon uk-form-icon-flip" data-uk-icon="icon: lock"></span>
+                            <input class="uk-input" required placeholder="Password" type="password" ng-model="form.password" required>
+                        </div>
+                    </div>
+                    <div class="uk-margin-bottom">
+                        <button type="submit" class="uk-button uk-button-primary uk-width-1-1" ng-disabled="!action.submit">LOG IN</button>
+                    </div>
+                </fieldset>
+            </form>
+            <!-- /login -->            
+        </div>
+		<!-- JS FILES -->
+		<script src="{% static 'js/uikit.min.js' %}"></script>
+		<script src="{% static 'js/uikit-icons.min.js' %}"></script>
+		<script src="{% static 'node_modules/lodash/lodash.min.js' %}"></script>
+		<script src="{% static 'node_modules/moment/moment.js' %}"></script>
+		<script src="{% static 'node_modules/angular/angular.min.js' %}"></script>
+		<script src="{% static 'node_modules/angular-route/angular-route.min.js' %}"></script>
+		<script src="{% static 'node_modules/ng-file-upload/dist/ng-file-upload-all.min.js' %}"></script>
+
+		<script src="{% static 'js/modules/app.js' %}"></script>
+		<script src="{% static 'js/modules/factories/http.js' %}"></script>
+		<script src="{% static 'js/modules/controllers/auth.js' %}"></script>
+	</body>
+</html>
