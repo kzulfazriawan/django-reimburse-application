@@ -27,6 +27,12 @@
 			</li>
 
 			<li>
+				<label class="uk-text-small uk-text-secondary">Amount <sup class="uk-text-danger">*</sup></label>
+				<input class="uk-input uk-margin-small uk-text-small" type="number" string-to-number
+					ng-model="form.amount" />
+			</li>
+
+			<li>
 				<label class="uk-text-small uk-text-secondary">Category <sup class="uk-text-danger">*</sup></label>
 				<select class="uk-select uk-text-small"
 					ng-options="key as value for (key , value) in settings.value" ng-model="form.category">

@@ -23,12 +23,12 @@ app.config(function($interpolateProvider, $routeProvider) {
     })
     
     // reimburse route url
-    .when("/reimburse/all", {
-        "templateUrl": "/reimburse/all",
+    .when("/reimburse", {
+        "templateUrl": "/reimburse",
         "controller" : "Reimburse"
     })
-    .when("/reimburse/post", {
-        "templateUrl": "/reimburse/post",
+    .when("/reimburse/create", {
+        "templateUrl": "/reimburse/create",
         "controller" : "Reimburse"
     })
     .when("/reimburse/detail/:id", {
@@ -42,27 +42,34 @@ app.config(function($interpolateProvider, $routeProvider) {
     })
 });
 
+
 app.controller('Global',
-    function($scope, $window, $timeout, Http){
-        var init_account = function(){
-            let endpoint = $window.location.host + API_AUTH.post;
-            Http.send("post", endpoint, {"data": $scope.form}).then(function success(response)
+    function($scope, $window, $timeout, $rootScope, $location, Http){
+        $scope.init = function(){
+            let endpoint = $window.location.host + API_ACC.api;
+            Http.sendGet(endpoint).then(function success(response)
             {
                 let data = response.data;
-                $scope.alert = {
-                    "status": "success", "message": data.message
-                };
-                $scope.alert.message += ", redirect in 3 seconds";
-                $timeout(function(){
-                    $window.location.href = '/';
-                }, 3000);
+                $rootScope.account = data;
+
             }, function error(response){
-                if (response.data.message !== 'undefined'){
-                    $scope.alert = {"status": "danger", "message": response.data.message};
-                } else {
-                    $scope.alert = {"status": "danger", "message": "Something went wrong"};
+                switch(response.status){
+                    case 404:
+                        $scope.alert = {"status": "danger", "message": "Profile is empty!, Please create it"};
+                        $timeout(function(){
+                            $location.path('/accounts/update-profile');
+                        }, 3000);        
+                        break;
+                    default:
+                        $scope.alert = {"status": "danger", "message": response.data.message};
+
+                        $timeout(function(){
+                            $window.location.href = '/accounts/login';
+                        }, 3000);
+                        break;
                 }
             });
         }
+
     }
 );

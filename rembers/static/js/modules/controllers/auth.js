@@ -1,5 +1,5 @@
 const API_AUTH = {
-    "post": "/accounts/api/login"
+    "api": "/accounts/api/auth"
 }
 
 app.controller('Auth',
@@ -11,7 +11,7 @@ app.controller('Auth',
         };
 
         var post_login = function(){
-            let endpoint = $window.location.host + API_AUTH.post;
+            let endpoint = $window.location.host + API_AUTH.api;
             Http.send("post", endpoint, {"data": $scope.form}).then(function success(response)
             {
                 let data = response.data;

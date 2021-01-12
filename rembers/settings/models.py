@@ -23,25 +23,32 @@ class Settings(models.Model):
 
     @classmethod
     def all_as_dict(cls):
-        return [
-            {
+        try:
+            return [
+                {
+                    "id": q.id,
+                    "name": q.name,
+                    "value": q.value,
+                    "category": q.category,
+                    "field_type": q.field_type,
+                    "description": q.description
+                } for q in cls.objects.order_by('id')
+            ]
+        except AttributeError as err:
+            raise err.with_traceback(err.__traceback__)
+
+    @classmethod
+    def get_one(cls, **kwargs):
+        q = cls.objects.filter(**kwargs).first()
+
+        try:
+            return {
                 "id": q.id,
                 "name": q.name,
                 "value": q.value,
                 "category": q.category,
                 "field_type": q.field_type,
                 "description": q.description
-            } for q in cls.objects.order_by('id')
-        ]
-
-    @classmethod
-    def get_one(cls, **kwargs):
-        q = cls.objects.filter(**kwargs).first()
-        return {
-            "id": q.id,
-            "name": q.name,
-            "value": q.value,
-            "category": q.category,
-            "field_type": q.field_type,
-            "description": q.description
-        }
+            }
+        except AttributeError as err:
+            raise err.with_traceback(err.__traceback__)

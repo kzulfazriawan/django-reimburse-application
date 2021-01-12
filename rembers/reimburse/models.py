@@ -1,3 +1,5 @@
+import os
+
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils.translation import gettext_lazy as _
@@ -23,7 +25,7 @@ class Reimburse(models.Model):
         completed = 'completed', _('completed')
         rejected = 'rejected', _('rejected')
 
-    user = models.OneToOneField(User,on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     date = models.DateField()
     document_attach = models.FileField(upload_to="upload")
     document_type = models.CharField(max_length=3, default=DocumentType.JPG, choices=DocumentType.choices)
@@ -33,18 +35,27 @@ class Reimburse(models.Model):
     amount = models.DecimalField(max_length=25, max_digits=25, decimal_places=0)
     remarks = models.TextField(null=True)
 
+    def extension(self):
+        name, extension = os.path.splitext(self.file.name)
+        return extension
+
     @classmethod
-    def all_as_dict(cls):
-        return [
-            {
-                "id": q.id,
-                "date": q.date.strftime('%Y/%m/%d'),
-                "document_attach": q.document_attach.url,
-                "document_type": q.document_type,
-                "description": q.description,
-                "category": q.category
-            } for q in cls.objects.order_by('id')
-        ]
+    def all_as_dict(cls, user_id):
+        try:
+            return [
+                {
+                    "id": q.id,
+                    "date": q.date.strftime('%Y/%m/%d'),
+                    "document_attach": q.document_attach.url,
+                    "document_type": q.document_type,
+                    "description": q.description,
+                    "category": q.category,
+                    "amount": q.amount,
+                    "status": q.status
+                } for q in cls.objects.filter(user_id=User(pk=user_id)).order_by('id')
+            ]
+        except AttributeError as err:
+            raise err.with_traceback(err.__traceback__)
 
     @classmethod
     def get_one(cls, **kwargs):

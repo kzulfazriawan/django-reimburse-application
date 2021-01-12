@@ -1,10 +1,10 @@
 const API_REM = {
-    "save": "/reimburse/api/save"
+    "api": "/reimburse/api",
 };
 
 
 app.controller("Reimburse",
-    function($scope, $window, Http){
+    function($scope, $window, $routeParams, Http){
         $scope.data = null;
         $scope.settings = {
             "value": {}
@@ -13,12 +13,13 @@ app.controller("Reimburse",
             "date": null,
             "document_attach": null,
             "category": "transport",
+            "amount": 0,
             "descriptioin": null
         };
         
         // ** LOADING SECTION SETTINGS **
         var init = function() {
-            let endpoint = $window.location.host + API_SET.get_name + "?name=category";
+            let endpoint = $window.location.host + API_SET.first + "?name=category";
             Http.sendGet(endpoint).then(function(response)
             {
                 let data = response.data;
@@ -32,13 +33,21 @@ app.controller("Reimburse",
             });
         }
 
+        var detail = function(id) {
+            let endpoint = $window.location.host + API_REM.api + '/' + id;
+            console.log(endpoint);
+            Http.sendGet(endpoint).then(function(response){
+                let data = response.data;
+                $scope.data = data;
+            });
+        }
+
         // ** SUBMIT UPDATE SETTINGS **
         var post_new = function(){
             let form = $scope.form;
-            let endpoint = $window.location.host + API_REM.save;
+            let endpoint = $window.location.host + API_REM.api;
 
             form.date = moment(form.date).format("YYYY-MM-DD");
-            console.log(form);
 
             Http.upload("post", endpoint, {"data": form}).then(function(response){
                 console.log(response);
@@ -51,6 +60,10 @@ app.controller("Reimburse",
 
         $scope.init = function(){
             init();
+        }
+
+        $scope.detail = function(){
+            detail($routeParams.id);
         }
     }
 );

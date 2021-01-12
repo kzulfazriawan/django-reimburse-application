@@ -6,8 +6,8 @@ from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from django.utils.decorators import method_decorator
 from django.views import View
-from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import TemplateView
+from django.views.decorators.csrf import csrf_exempt
 
 from .forms import PatchUserProfileForm
 from .models import UserProfileInfo
@@ -24,7 +24,7 @@ class APIAccounts(View):
             try:
                 return JsonResponse(UserProfileInfo.get_accounts(requests.user.id), status=200)
             except AttributeError:
-                return JsonResponse({"message": "Access denied"}, status=403)
+                return JsonResponse({"message": "not found"}, status=404)
         else:
             return JsonResponse({"message": "Unauthenticated"}, status=401)
 
@@ -86,7 +86,6 @@ class ViewAccounts(TemplateView):
 
     def get(self, requests, *args, **kwargs):
         context = self.get_context_data()
-        context['data'] = UserProfileInfo.get_accounts(requests.user.id)
         return super().render_to_response(context)
 
     def get_context_data(self, **kwargs):

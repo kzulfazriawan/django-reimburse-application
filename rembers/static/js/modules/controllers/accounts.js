@@ -1,5 +1,5 @@
 const API_ACC = {
-    "api": "/accounts/api/accounts"
+    "api": "/accounts/api"
 };
 
 
@@ -20,7 +20,7 @@ app.controller("Accounts",
         
         // ** LOADING SECTION SETTINGS **
         var initSetting = function() {
-            let endpoint = $window.location.host + API_SET.get_name + "?name=bank_available";
+            let endpoint = $window.location.host + API_SET.first + "?name=bank_available";
             Http.sendGet(endpoint).then(function(response)
             {
                 let data = response.data;

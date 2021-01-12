@@ -1,6 +1,6 @@
 const API_SET = {
-    "get" : "/settings/api/",
-    "save": "/settings/api/save",
+    "api" : "/settings/api/",
+    "first": "/settings/api/first",
     "get_name": "/settings/api/name/"
 };
 
@@ -12,7 +12,7 @@ app.controller('Settings',
         
         // ** LOADING SECTION SETTINGS **
         var init = function() {
-            let endpoint = $window.location.host + API_SET.get;
+            let endpoint = $window.location.host + API_SET.api;
             Http.sendGet(endpoint).then(function(response)
             {
                 let data = response.data;
@@ -37,7 +37,7 @@ app.controller('Settings',
 
         // ** SUBMIT UPDATE SETTINGS **
         var submit = function(){
-            let endpoint = $window.location.host + API_SET.save;
+            let endpoint = $window.location.host + API_SET.api;
 
             Http.send('post', endpoint, {"data": $scope.form}).then(function(response){
                 console.log(response);
